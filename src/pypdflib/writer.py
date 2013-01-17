@@ -254,23 +254,23 @@ class PDFWriter():
             self.add_text(widget)
         #TODO: Add other widgets
                 
-    def add_image(self, image):
+    def add_image(self, image,scale):
         self.context.save ()
         self.context.move_to(self.left_margin, self.position_y)
         image_surface = cairo.ImageSurface.create_from_png (image.image_data)
         w = image_surface.get_width ()
         h = image_surface.get_height ()
-        if (self.position_y + h*0.5) > self.ybottom:
+        if (self.position_y + h*scale) > self.ybottom:
             self.page_break()
         data =image_surface.get_data()
         stride = cairo.ImageSurface.format_stride_for_width (cairo.FORMAT_ARGB32, w)
         image_surface = cairo.ImageSurface.create_for_data(data, cairo.FORMAT_ARGB32, w, h,stride)
         self.assert_page_break()
-        self.context.scale(0.5, 0.5)
-        self.context.set_source_surface (image_surface,self.left_margin/0.5, self.position_y/0.5)
+        self.context.scale(scale, scale)
+        self.context.set_source_surface (image_surface,self.left_margin/scale, self.position_y/scale)
         self.context.paint()
         self.context.restore ()        
-        self.position_y+= h*0.5+ image.padding_bottom 
+        self.position_y+= h*scale+ image.padding_bottom 
         
         
     def new_page(self):
