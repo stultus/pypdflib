@@ -30,16 +30,14 @@ import pango
 if __name__=="__main__":
     pdf = PDFWriter("image.pdf",StandardPaper.A4)
     header = Header(text_align = pango.ALIGN_CENTER)
-    #TODO Alignment not working.
     header.set_text("test header")
     pdf.set_header(header)
     footer = Footer(text_align = pango.ALIGN_CENTER)
     footer.set_text("test footer")
-    #TODO Alignment not working.
     pdf.set_footer(footer)
     image  = Image()  
     image.set_image_file("White_peacock.jpg")
-    pdf.add_image(image)
+    pdf.add_image(image,0.25)
     pdf.flush()
     """
     table = Table(border_width=1)

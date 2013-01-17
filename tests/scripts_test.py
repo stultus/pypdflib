@@ -29,13 +29,11 @@ import pango
 
 if __name__=="__main__":
     pdf = PDFWriter("scripts.pdf",StandardPaper.A4)
-    header = Header(text_align = pango.ALIGN_CENTER)
-    #TODO Alignment not working.
-    header.set_text("test header")
+    header = Header(text_align = pango.ALIGN_LEFT)
+    header.set_text("ടെസ്റ്റ് തലക്കെട്ട്")
     pdf.set_header(header)
-    footer = Footer(text_align = pango.ALIGN_CENTER)
+    footer = Footer(text_align = pango.ALIGN_LEFT)
     footer.set_text("test footer")
-    #TODO Alignment not working.
     pdf.set_footer(footer)
     h1= Text("Samples",font_size=16) 
     pdf.add_text(h1)
@@ -99,7 +97,9 @@ if __name__=="__main__":
         para = Paragraph(text=para_content)
         para.language = "ta_IN"
         pdf.add_paragraph(para)
-    
+    image  = Image()  
+    image.set_image_file("White_peacock.jpg")
+    pdf.add_image(image,0.25)
     h2 = Text("Arabic",font_size=14)
     h2.color = Color(0.0,0.0,0.8,1.0)
     pdf.add_text(h2)    

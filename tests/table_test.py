@@ -30,12 +30,10 @@ import pango
 if __name__=="__main__":
     pdf = PDFWriter("tables.pdf",StandardPaper.A4)
     header = Header(text_align = pango.ALIGN_CENTER)
-    #TODO Alignment not working.
     header.set_text("test header")
     pdf.set_header(header)
     footer = Footer(text_align = pango.ALIGN_CENTER)
     footer.set_text("test footer")
-    #TODO Alignment not working.
     pdf.set_footer(footer)
     table = Table(border_width=1)
     table.cell_padding = [2, 2, 2, 2]
